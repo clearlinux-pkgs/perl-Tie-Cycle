@@ -4,7 +4,7 @@
 #
 Name     : perl-Tie-Cycle
 Version  : 1.225
-Release  : 2
+Release  : 3
 URL      : https://cpan.metacpan.org/authors/id/B/BD/BDFOY/Tie-Cycle-1.225.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/B/BD/BDFOY/Tie-Cycle-1.225.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libt/libtie-cycle-perl/libtie-cycle-perl_1.225-1.debian.tar.xz
@@ -78,7 +78,7 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.26.1/Tie/Cycle.pm
+/usr/lib/perl5/vendor_perl/5.28.0/Tie/Cycle.pm
 
 %files dev
 %defattr(-,root,root,-)
