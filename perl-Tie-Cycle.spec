@@ -4,7 +4,7 @@
 #
 Name     : perl-Tie-Cycle
 Version  : 1.225
-Release  : 4
+Release  : 5
 URL      : https://cpan.metacpan.org/authors/id/B/BD/BDFOY/Tie-Cycle-1.225.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/B/BD/BDFOY/Tie-Cycle-1.225.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libt/libtie-cycle-perl/libtie-cycle-perl_1.225-1.debian.tar.xz
