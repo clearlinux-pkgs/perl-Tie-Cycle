@@ -4,7 +4,7 @@
 #
 Name     : perl-Tie-Cycle
 Version  : 1.225
-Release  : 9
+Release  : 10
 URL      : https://cpan.metacpan.org/authors/id/B/BD/BDFOY/Tie-Cycle-1.225.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/B/BD/BDFOY/Tie-Cycle-1.225.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libt/libtie-cycle-perl/libtie-cycle-perl_1.225-1.debian.tar.xz
@@ -12,6 +12,7 @@ Summary  : 'Cycle through a list of values via a scalar.'
 Group    : Development/Tools
 License  : Artistic-2.0 GPL-2.0 MIT
 Requires: perl-Tie-Cycle-license = %{version}-%{release}
+Requires: perl-Tie-Cycle-perl = %{version}-%{release}
 BuildRequires : buildreq-cpan
 
 %description
@@ -21,6 +22,7 @@ See the tests in the t/ directory for examples until I add some more.
 Summary: dev components for the perl-Tie-Cycle package.
 Group: Development
 Provides: perl-Tie-Cycle-devel = %{version}-%{release}
+Requires: perl-Tie-Cycle = %{version}-%{release}
 
 %description dev
 dev components for the perl-Tie-Cycle package.
@@ -34,18 +36,28 @@ Group: Default
 license components for the perl-Tie-Cycle package.
 
 
+%package perl
+Summary: perl components for the perl-Tie-Cycle package.
+Group: Default
+Requires: perl-Tie-Cycle = %{version}-%{release}
+
+%description perl
+perl components for the perl-Tie-Cycle package.
+
+
 %prep
 %setup -q -n Tie-Cycle-1.225
-cd ..
-%setup -q -T -D -n Tie-Cycle-1.225 -b 1
+cd %{_builddir}
+tar xf %{_sourcedir}/libtie-cycle-perl_1.225-1.debian.tar.xz
+cd %{_builddir}/Tie-Cycle-1.225
 mkdir -p deblicense/
-mv %{_topdir}/BUILD/debian/* %{_topdir}/BUILD/Tie-Cycle-1.225/deblicense/
+cp -r %{_builddir}/debian/* %{_builddir}/Tie-Cycle-1.225/deblicense/
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
+export LANG=C.UTF-8
 if test -f Makefile.PL; then
 %{__perl} Makefile.PL
 make  %{?_smp_mflags}
@@ -55,7 +67,7 @@ else
 fi
 
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
@@ -64,8 +76,8 @@ make TEST_VERBOSE=1 test
 %install
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/perl-Tie-Cycle
-cp LICENSE %{buildroot}/usr/share/package-licenses/perl-Tie-Cycle/LICENSE
-cp deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-Tie-Cycle/deblicense_copyright
+cp %{_builddir}/Tie-Cycle-1.225/LICENSE %{buildroot}/usr/share/package-licenses/perl-Tie-Cycle/40c57ec429e15412b20d729324e54569471f58e6
+cp %{_builddir}/Tie-Cycle-1.225/deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-Tie-Cycle/b3b506c47851fa5632c4ddbba7c3c6ed767f0cf8
 if test -f Makefile.PL; then
 make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
@@ -78,7 +90,6 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.28.2/Tie/Cycle.pm
 
 %files dev
 %defattr(-,root,root,-)
@@ -86,5 +97,9 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/perl-Tie-Cycle/LICENSE
-/usr/share/package-licenses/perl-Tie-Cycle/deblicense_copyright
+/usr/share/package-licenses/perl-Tie-Cycle/40c57ec429e15412b20d729324e54569471f58e6
+/usr/share/package-licenses/perl-Tie-Cycle/b3b506c47851fa5632c4ddbba7c3c6ed767f0cf8
+
+%files perl
+%defattr(-,root,root,-)
+/usr/lib/perl5/vendor_perl/5.30.1/Tie/Cycle.pm
