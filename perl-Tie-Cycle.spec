@@ -4,7 +4,7 @@
 #
 Name     : perl-Tie-Cycle
 Version  : 1.225
-Release  : 10
+Release  : 11
 URL      : https://cpan.metacpan.org/authors/id/B/BD/BDFOY/Tie-Cycle-1.225.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/B/BD/BDFOY/Tie-Cycle-1.225.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libt/libtie-cycle-perl/libtie-cycle-perl_1.225-1.debian.tar.xz
@@ -77,7 +77,7 @@ make TEST_VERBOSE=1 test
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/perl-Tie-Cycle
 cp %{_builddir}/Tie-Cycle-1.225/LICENSE %{buildroot}/usr/share/package-licenses/perl-Tie-Cycle/40c57ec429e15412b20d729324e54569471f58e6
-cp %{_builddir}/Tie-Cycle-1.225/deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-Tie-Cycle/b3b506c47851fa5632c4ddbba7c3c6ed767f0cf8
+cp %{_builddir}/debian/copyright %{buildroot}/usr/share/package-licenses/perl-Tie-Cycle/b3b506c47851fa5632c4ddbba7c3c6ed767f0cf8
 if test -f Makefile.PL; then
 make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
@@ -102,4 +102,4 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files perl
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.30.1/Tie/Cycle.pm
+/usr/lib/perl5/vendor_perl/5.30.2/Tie/Cycle.pm
