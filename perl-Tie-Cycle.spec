@@ -7,7 +7,7 @@
 #
 Name     : perl-Tie-Cycle
 Version  : 1.228
-Release  : 26
+Release  : 27
 URL      : https://cpan.metacpan.org/authors/id/B/BD/BDFOY/Tie-Cycle-1.228.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/B/BD/BDFOY/Tie-Cycle-1.228.tar.gz
 Summary  : 'Cycle through a list of values via a scalar.'
